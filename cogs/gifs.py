@@ -104,6 +104,10 @@ class GIFCommands(commands.Cog):
     @commands.command()
     @commands.cooldown(2, 30, commands.BucketType.user)
     async def poke(self, ctx, *, person):
+        try:
+            await ctx.message.delete()
+        except AttributeError:
+            pass
         GIF = search_gif('anime poke', 15)
         if 'redbeard' in person.lower():
             await ctx.send("Nah nah nah, you dont poke me :) I poke you")
@@ -141,7 +145,6 @@ class GIFCommands(commands.Cog):
             )
         embed.set_image(url=get_gif_link(GIF))
         await ctx.send(embed=embed)
-        await ctx.message.delete()
 
 
 def setup(bot):
