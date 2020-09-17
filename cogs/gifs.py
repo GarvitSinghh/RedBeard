@@ -121,15 +121,27 @@ class GIFCommands(commands.Cog):
     @commands.command()
     @commands.cooldown(2, 30, commands.BucketType.user)
     async def GIF(self, ctx, *, search_item):
-        GIF = search_gif(search_item, 25)
-        if not GIF:
-            await ctx.send("No results found..")
+        if ',' in search_item:
+            a = search_item.split(",")
+            GIF = search_gif(a[0], 25)
+            desc = a[1]
+            if not GIF:
+                await ctx.send("No results found..")
+                return
+            else:
+                embed = discord.Embed(
+                    title=None,
+                    description=desc,
+                    colour=random.choice(colors)
+                )
         else:
+            GIF = search_gif(search_item, 25)
             embed = discord.Embed(
                 colour=random.choice(colors)
             )
-            embed.set_image(url=get_gif_link(GIF))
-            await ctx.send(embed=embed)
+        
+        embed.set_image(url=get_gif_link(GIF))
+        await ctx.send(embed=embed)
 
 
 def setup(bot):
