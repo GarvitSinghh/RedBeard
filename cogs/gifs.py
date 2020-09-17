@@ -139,7 +139,7 @@ class GIFCommands(commands.Cog):
             embed = discord.Embed(
                 colour=random.choice(colors)
             )
-        
+        await ctx.message.delete()
         embed.set_image(url=get_gif_link(GIF))
         await ctx.send(embed=embed)
 
