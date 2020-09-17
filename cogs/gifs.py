@@ -119,7 +119,7 @@ class GIFCommands(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    @commands.cooldown(2, 30, commands.BucketType.user)
+    @commands.cooldown(5, 30, commands.BucketType.user)
     async def GIF(self, ctx, *, search_item):
         if ',' in search_item:
             a = search_item.split(",")
@@ -139,9 +139,9 @@ class GIFCommands(commands.Cog):
             embed = discord.Embed(
                 colour=random.choice(colors)
             )
-        await ctx.message.delete()
         embed.set_image(url=get_gif_link(GIF))
         await ctx.send(embed=embed)
+        await ctx.message.delete()
 
 
 def setup(bot):
