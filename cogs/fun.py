@@ -10,8 +10,8 @@ class FunCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.cooldown(1, 60, commands.BucketType.user)
     @commands.command()
+    @commands.cooldown(1, 60, commands.BucketType.user)
     async def meme(self, ctx, *args):
         try:
             await ctx.message.delete()
@@ -27,8 +27,8 @@ class FunCommands(commands.Cog):
         embed.set_image(url=link)
         await ctx.send(embed=embed)
 
-    @commands.cooldown(1, 30, commands.BucketType.user)
     @commands.command()
+    @commands.cooldown(12, 30, commands.BucketType.user)
     async def FLAMES(self, ctx, p1, p2):
         for i in p1:
             for j in p2:
@@ -61,6 +61,27 @@ class FunCommands(commands.Cog):
             await ctx.send(f"The relationship is {ans}")
         else:
             print("Invalid name")
+
+    @commands.command()
+    @commands.guild_only()
+    @commands.cooldown(1, 7, commands.BucketType.user)
+    @commands.has_permissions(ban_members=False)
+    async def ban(self, ctx, *, useless=None):
+        await ctx.send("Successfully Banned! :white_check_mark:")
+
+    @commands.command()
+    @commands.guild_only()
+    @commands.cooldown(1, 7, commands.BucketType.user)
+    @commands.has_permissions(unban_members=False)
+    async def kick(self, ctx, *, useless=None):
+        await ctx.send("Successfully Kicked! :white_check_mark:")
+
+    @commands.command()
+    @commands.guild_only()
+    @commands.cooldown(1, 7, commands.BucketType.user)
+    @commands.has_permissions(unban_members=False)
+    async def mute(self, ctx, *, useless=None):
+        await ctx.send("Successfully Muted! :white_check_mark:")
 
 
 def setup(bot):
