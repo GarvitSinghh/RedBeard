@@ -50,7 +50,7 @@ class ModeratorCommands(commands.Cog):
         try:
             await member.kick(reason='No reason was given' if reason is None else reason)
             await ctx.send(
-                f"{ctx.member.mention} has kicked {member.mention}\n Reason: {'No reason was given' if reason is None else reason}")
+                f"{ctx.message.author.mention} has kicked {member.mention}\n Reason: {'No reason was given' if reason is None else reason}")
             await ctx.send(f"Success :white_check_mark:")
 
         except Exception as e:
@@ -66,7 +66,7 @@ class ModeratorCommands(commands.Cog):
             await ctx.send("Invalid!")
         try:
             await ctx.guild.ban(discord.Object(id=member), reason='No reason was given' if reason is None else reason)
-            await ctx.send(f"They have been banned! \nReason: {'No reason was given' if reason is None else reason}")
+            await ctx.send(f"<@{member}> has been banned! \nReason: {'No reason was given' if reason is None else reason}")
             await ctx.send(f"Success :white_check_mark:")
 
         except Exception as e:
@@ -79,7 +79,7 @@ class ModeratorCommands(commands.Cog):
         await ctx.message.delete()
         try:
             await ctx.guild.unban(discord.Object(id=member), reason='No reason was given' if reason is None else reason)
-            await ctx.send("They have been Unbanned! \nReason: {'No reason was given' if reason is None else reason}")
+            await ctx.send(f"<@{member}> has been Unbanned! \nReason: {'No reason was given' if reason is None else reason}")
             await ctx.send("Success :white_check_mark:")
         except Exception as e:
             await ctx.send(e)

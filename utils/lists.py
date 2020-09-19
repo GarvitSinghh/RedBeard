@@ -13,4 +13,9 @@ activities = [discord.Game('Human | Type help for help'), discord.Game('Osu! | T
               discord.Activity(type=discord.ActivityType.listening, name="music | Type help for help"),
               discord.Game('Human | Type help for help')]
 
+responses = ["Fuck you, go away. Why do you think this piece of floating plastic has the answers you're looking for? Die in a fire.",
+             "Please ask again.", "Why do you ask me? I'm just a friggin 8-ball! Get a life, loser...", "Can't you figure that out yourself?", "She's a murderer, dumbass.",
+             "Can't you figure that out yourself?", "You sick idiot.", "How Do You Keep An Idiot Amused and Waste his time?? Ask again.", "What are you, stupid?", "Abducted By Aliens",
+             "Pay Off Your Loans First", "Please die", "Wtf no", "Isn't that obvious? Dumbass"]
+
 statuses = [discord.Status.online, discord.Status.idle]

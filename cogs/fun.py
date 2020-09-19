@@ -2,7 +2,7 @@ import random
 import discord
 from discord.ext import commands
 from utils.memes import get_meme
-from utils.lists import colors
+from utils.lists import colors, responses
 import time
 
 
@@ -62,25 +62,31 @@ class FunCommands(commands.Cog):
         else:
             print("Invalid name")
 
-    @commands.command()
-    @commands.guild_only()
-    @commands.cooldown(1, 7, commands.BucketType.user)
-    async def ban(self, ctx, *, useless=None):
-        await ctx.send("Successfully Banned! :white_check_mark:")
+    @commands.command(aliases=['8ball'])
+    @commands.cooldown(20, 60)
+    async def ball_(self, ctx, *, question=None):
+        if question is not None:
+            await ctx.send(random.choice(responses))
+        else:
+            await ctx.send("Ask a damn question idiot.")
 
     @commands.command()
     @commands.guild_only()
     @commands.cooldown(1, 7, commands.BucketType.user)
-    async def kick(self, ctx, user: discord.Member = None, *, useless=None):
-        if user is not None:
-            await ctx.send("Successfully Kicked! :white_check_mark:")
+    async def ban(self, ctx, user: discord.Member, *, useless=None):
+        await ctx.send(f"Successfully Banned {user.mention}! :white_check_mark:")
 
     @commands.command()
     @commands.guild_only()
     @commands.cooldown(1, 7, commands.BucketType.user)
-    async def mute(self, ctx, user: discord.Member = None, *, useless=None):
-        if user is not None:
-            await ctx.send("Successfully Muted! :white_check_mark:")
+    async def kick(self, ctx, user: discord.Member, *, useless=None):
+        await ctx.send(f"Successfully Kicked {user.mention}! :white_check_mark:")
+
+    @commands.command()
+    @commands.guild_only()
+    @commands.cooldown(1, 7, commands.BucketType.user)
+    async def mute(self, ctx, user: discord.Member, *, useless=None):
+        await ctx.send(f"{user.mention} has been Successfully Muted !  :white_check_mark:")
 
 
 def setup(bot):
