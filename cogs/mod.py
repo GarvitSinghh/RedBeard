@@ -29,11 +29,24 @@ class ActionReason(commands.Converter):
 class ModeratorCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        try:
+            self.bot.remove_command('kick')
+        except:
+            pass
+        try:
+            self.bot.remove_command('ban')
+        except:
+            pass
+        try:
+            self.bot.remove_command('mute')
+        except:
+            pass
 
     @commands.command()
     @commands.guild_only()
     @commands.has_permissions(kick_members=True)
-    async def kick(self, ctx, member: discord.Member, *, reason=None):
+    async def kick_(self, ctx, member: discord.Member, *, reason=None):
+        await ctx.message.delete()
         try:
             await member.kick(reason='No reason was given' if reason is None else reason)
             await ctx.send(
@@ -46,7 +59,8 @@ class ModeratorCommands(commands.Cog):
     @commands.command()
     @commands.guild_only()
     @commands.has_permissions(ban_members=True)
-    async def ban(self, ctx, member: MemberID, *, reason=None):
+    async def ban_(self, ctx, member: MemberID, *, reason=None):
+        await ctx.message.delete()
         m = ctx.guild.get_member(member)
         if m is None:
             await ctx.send("Invalid!")
@@ -61,7 +75,8 @@ class ModeratorCommands(commands.Cog):
     @commands.command()
     @commands.guild_only()
     @commands.has_permissions(ban_members=True)
-    async def unban(self, ctx, member: MemberID, *, reason=None):
+    async def unban_(self, ctx, member: MemberID, *, reason=None):
+        await ctx.message.delete()
         try:
             await ctx.guild.unban(discord.Object(id=member), reason='No reason was given' if reason is None else reason)
             await ctx.send("They have been Unbanned! \nReason: {'No reason was given' if reason is None else reason}")
