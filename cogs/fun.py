@@ -72,14 +72,14 @@ class FunCommands(commands.Cog):
     @commands.command()
     @commands.guild_only()
     @commands.cooldown(1, 7, commands.BucketType.user)
-    @commands.has_permissions(unban_members=False)
+    @commands.has_permissions(kick_members=False)
     async def kick(self, ctx, *, useless=None):
         await ctx.send("Successfully Kicked! :white_check_mark:")
 
     @commands.command()
     @commands.guild_only()
     @commands.cooldown(1, 7, commands.BucketType.user)
-    @commands.has_permissions(unban_members=False)
+    @commands.has_permissions(manage_roles=False)
     async def mute(self, ctx, *, useless=None):
         await ctx.send("Successfully Muted! :white_check_mark:")
 
