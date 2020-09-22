@@ -28,7 +28,7 @@ class FunCommands(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    @commands.cooldown(12, 30, commands.BucketType.user)
+    @commands.cooldown(5, 30, commands.BucketType.user)
     async def FLAMES(self, ctx, p1, p2):
         for i in p1:
             for j in p2:

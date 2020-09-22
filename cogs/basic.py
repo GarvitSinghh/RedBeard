@@ -26,7 +26,7 @@ class BasicCommands(commands.Cog):
             embed.add_field(name='Know my commands', value="You'll learn them as you talk haha", inline=False)
             embed.add_field(name="Anime GIF Commands", value="Kill, Stare, Punch, Slap, Hug and Poke", inline=False)
             embed.add_field(name="Other GIF Commands", value="Usage: GIF search, description\n", inline=False)
-            embed.add_field(name='AI', value="Takes some time to start, so wait!\nUsage: Just type ai (currently removed)", inline=True)
+            embed.add_field(name='AI', value="Takes some time to start, so wait!\nUsage: Just type ai", inline=True)
             embed.add_field(name="Description", value="Connects you to an Artificial Intelligence\n(Cleverbot)",
                             inline=True)
             embed.add_field(name="FLAMES", value="Usage: FLAMES \"name\" \"name2\"",
