@@ -5,6 +5,7 @@ import time
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup as bs
 import os
+import ast
 
 
 def search_gif(search_item, limit):
@@ -39,3 +40,19 @@ def get_gif_link(link):
     soup = bs(page.content, "html.parser")
     gif = soup.findAll('img')[2]
     return gif['src']
+
+
+def insert_returns(body):
+    # insert return stmt if the last expression is a expression statement
+    if isinstance(body[-1], ast.Expr):
+        body[-1] = ast.Return(body[-1].value)
+        ast.fix_missing_locations(body[-1])
+
+    # for if statements, we insert returns into the body and the or else
+    if isinstance(body[-1], ast.If):
+        insert_returns(body[-1].body)
+        insert_returns(body[-1].orelse)
+
+    # for with blocks, again we insert returns into the body
+    if isinstance(body[-1], ast.With):
+        insert_returns(body[-1].body)
