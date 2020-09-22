@@ -143,6 +143,7 @@ class GIFCommands(commands.Cog):
                 colour=random.choice(colors)
             )
         embed.set_image(url=get_gif_link(GIF))
+        embed.set_author(name=f"{ctx.message.author.name}", icon_url=f"{ctx.author.avatar_url}")
         await ctx.send(embed=embed)
 
 
