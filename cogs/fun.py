@@ -5,6 +5,7 @@ from utils.memes import get_meme
 from utils.lists import colors, responses
 import time
 import subprocess
+import cowsay
 
 
 def get_cow(text):
