@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands
 from utils.memes import get_meme
 from utils.lists import colors, responses
+from utils.bunny import bunny_list
 import time
 import subprocess
 import cowsay
@@ -16,7 +17,6 @@ def get_cow(text):
     return x
 
 
-
 class FunCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -26,8 +26,8 @@ class FunCommands(commands.Cog):
     async def meme(self, ctx, *args):
         try:
             await ctx.message.delete()
-        except:
-            pass
+        except Exception as e:
+            print(e)
         link = get_meme(*args)
         embed = discord.Embed(
             title=None,
@@ -45,7 +45,7 @@ class FunCommands(commands.Cog):
 
     @commands.command()
     @commands.cooldown(5, 30, commands.BucketType.user)
-    async def FLAMES(self, ctx, p1, p2):
+    async def flames(self, ctx, p1, p2):
         for i in p1:
             for j in p2:
                 if i == j:
@@ -89,20 +89,27 @@ class FunCommands(commands.Cog):
     @commands.command()
     @commands.guild_only()
     @commands.cooldown(1, 7, commands.BucketType.user)
-    async def ban(self, ctx, user: discord.Member, *, useless=None):
+    async def ban(self, ctx, user: discord.User):
         await ctx.send(f"Successfully Banned {user.mention}! :white_check_mark:")
 
     @commands.command()
     @commands.guild_only()
     @commands.cooldown(1, 7, commands.BucketType.user)
-    async def kick(self, ctx, user: discord.Member, *, useless=None):
+    async def kick(self, ctx, user: discord.User):
         await ctx.send(f"Successfully Kicked {user.mention}! :white_check_mark:")
 
     @commands.command()
     @commands.guild_only()
     @commands.cooldown(1, 7, commands.BucketType.user)
-    async def mute(self, ctx, user: discord.Member, *, useless=None):
+    async def mute(self, ctx, user: discord.User):
         await ctx.send(f"{user.mention} has been Successfully Muted !  :white_check_mark:")
+
+    @commands.command()
+    async def bunny(self, ctx):
+        msg = await ctx.send(bunny_list[0])
+        for x in range(1, len(bunny_list)):
+            time.sleep(0.2)
+            await msg.edit(content=bunny_list[x])
 
 
 def setup(bot):
