@@ -13,7 +13,7 @@ class BasicCommands(commands.Cog):
         self.bot = bot
         self.bot.remove_command('help')
 
-    @commands.command(aliases=['helpme'])
+    @commands.command()
     @commands.cooldown(1, 1800, commands.BucketType.user)
     async def help(self, ctx,  what='Everything'):
         if what.lower() == 'everything':
@@ -32,7 +32,9 @@ class BasicCommands(commands.Cog):
             embed.add_field(name="FLAMES", value="Usage: FLAMES \"name\" \"name2\"",
                             inline=False)
             embed.add_field(name="MEME", value="Usage: meme \"template\" \"text1\" \"text2\" ...")
-            embed.add_field(name="Others", value="Invite: Invite the bot to your server\nSource: Get source code\nHelp: Get this help embed",
+            embed.add_field(name="Others", value="Invite: Invite the bot to your server\nSource: Get source "
+                                                 "code\nHelp: Get this help embed\nBunny: See for yourself "
+                                                 ":man_shrugging_tone1:\ncowsay: Usage: cowsay \"text\"",
                             inline=False)
 
             embed.set_author(name="RedBeard", icon_url=self.bot.user.avatar_url)
@@ -48,7 +50,7 @@ class BasicCommands(commands.Cog):
         before = time.monotonic()
         msg = await ctx.send(f"Pongg! :ping_pong: \nDiscord API Ping: {str(ping)[:5]}ms\n")
         after = time.monotonic()
-        await msg.edit(content=f"Pongg! :ping_pong: \nDiscord API Ping: {str(ping)[:5]}ms\nMessage Roundtrip: {str((after-before)*1000)[:5]}ms")
+        await msg.edit(content=f"Pongg! :ping_pong: \nDiscord API Ping: {str(ping)[:5]}ms\nMessage Round trip: {str((after-before)*1000)[:5]}ms")
 
     @commands.command()
     @commands.cooldown(1, 10)
