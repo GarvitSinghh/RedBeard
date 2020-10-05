@@ -6,7 +6,6 @@ from utils.lists import colors, responses
 from utils.bunny import bunny_list
 import time
 import subprocess
-import cowsay
 
 
 def get_cow(text):
@@ -105,9 +104,11 @@ class FunCommands(commands.Cog):
         await ctx.send(f"{user.mention} has been Successfully Muted !  :white_check_mark:")
 
     @commands.command()
+    @commands.cooldown(1, 60, commands.BucketType.user)
     async def bunny(self, ctx):
         msg = await ctx.send(bunny_list[0])
         for x in range(1, len(bunny_list)):
+            time.sleep(0.1)
             await msg.edit(content=bunny_list[x])
 
 
