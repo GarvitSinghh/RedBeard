@@ -4,6 +4,16 @@ from discord.ext import commands
 from utils.memes import get_meme
 from utils.lists import colors, responses
 import time
+import subprocess
+
+
+def get_cow(text):
+    command = "python -m cowsay" + " " + text
+    proc = subprocess.run(command, shell=True, capture_output=True)
+    x = proc.stdout.decode()
+    print(x)
+    return x
+
 
 
 class FunCommands(commands.Cog):
@@ -26,6 +36,11 @@ class FunCommands(commands.Cog):
         embed.set_author(name=f"{ctx.message.author.name}", icon_url=f"{ctx.author.avatar_url}")
         embed.set_image(url=link)
         await ctx.send(embed=embed)
+
+    @commands.command()
+    @commands.cooldown(5, 30, commands.BucketType.user)
+    async def cowsay(self, ctx, *, thing):
+        await ctx.send(f"```{get_cow(thing)}```")
 
     @commands.command()
     @commands.cooldown(5, 30, commands.BucketType.user)
