@@ -108,7 +108,6 @@ class FunCommands(commands.Cog):
     async def bunny(self, ctx):
         msg = await ctx.send(bunny_list[0])
         for x in range(1, len(bunny_list)):
-            time.sleep(0.2)
             await msg.edit(content=bunny_list[x])
 
 
