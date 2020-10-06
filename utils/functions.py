@@ -27,11 +27,11 @@ def check(author):
     return inner_check
 
 
-def getAnswer(question, myDriver):
-    box = myDriver.find_element_by_xpath("//input[@name='stimulus']")
+def get_answer(question, my_driver):
+    box = my_driver.find_element_by_xpath("//input[@name='stimulus']")
     box.send_keys(question + Keys.ENTER)
     time.sleep(5.5)
-    answer = myDriver.find_element_by_xpath("//*[@id=\"line1\"]/span[1]").text
+    answer = my_driver.find_element_by_xpath("//*[@id=\"line1\"]/span[1]").text
     return answer
 
 
