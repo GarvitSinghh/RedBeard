@@ -19,6 +19,12 @@ def get_cow(text):
 class FunCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        try:
+            self.bot.remove_command('ban')
+            self.bot.remove_command('kick')
+            self.bot.remove_command('mute')
+        except Exception as e:
+            print(e)            
 
     @commands.command()
     @commands.cooldown(1, 60, commands.BucketType.user)
