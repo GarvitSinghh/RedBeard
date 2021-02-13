@@ -29,7 +29,7 @@ class ServerCommands(commands.Cog, name='Server Commands'):
             title=suggestion,
             color=random.choice(colors)
         )
-        embed.set_author(name=ctx.message.author.display_name, icon_url=ctx.message.author.avatar_url))
+        embed.set_author(name=ctx.message.author.display_name, icon_url=ctx.message.author.avatar_url)
         message = await ctx.guild.suggestion_channel.send(embed=embed)
         message.add_reaction("✅")
         message.add_reaction("❌")
