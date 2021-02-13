@@ -35,3 +35,7 @@ class ServerCommands(commands.Cog, name='Server Commands'):
         message.add_reaction("❌")
         
         await ctx.message.delete();
+
+
+def setup(bot):
+    bot.add_cog(ServerCommands(bot))
