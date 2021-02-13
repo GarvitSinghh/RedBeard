@@ -22,15 +22,15 @@ def generate_meme(_id, *args):
 
 
 def search_meme(name):
-    memeSearch = 'https://imgflip.com/memesearch?q='
+    meme_search = 'https://imgflip.com/memesearch?q='
     x = name.split()
     for i in range(len(x)):
         if i == 0:
-            memeSearch = memeSearch + x[i]
+            meme_search = meme_search + x[i]
         else:
-            memeSearch = memeSearch + '+' + x[i]
+            meme_search = meme_search + '+' + x[i]
 
-    page = requests.get(memeSearch)
+    page = requests.get(meme_search)
     soup = bs(page.content, 'html5lib')
     s = soup.findAll('a')
     links = []
