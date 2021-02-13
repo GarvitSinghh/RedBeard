@@ -14,7 +14,7 @@ class BasicCommands(commands.Cog):
         self.bot.remove_command('help')
 
     @commands.command()
-    @commands.cooldown(1, 1800, commands.BucketType.user)
+    @commands.cooldown(3, 1800, commands.BucketType.user)
     async def help(self, ctx,  what='Everything'):
         if what.lower() == 'everything':
             embed = discord.Embed(
