@@ -14,13 +14,6 @@ class Events(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
 
-        # block knight from spamming
-        if message.content.upper().startswith("SPAM"):
-            knight = message.guild.get_member(740235240399962123)
-            role = discord.utils.get(message.guild.roles, name='Spammer')
-            await knight.remove_roles(role)
-            await message.channel.send("No spamming idiot")
-
         self.bot.process_commands(message)
 
     @commands.Cog.listener()
