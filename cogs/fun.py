@@ -18,13 +18,7 @@ def get_cow(text):
 
 class FunCommands(commands.Cog):
     def __init__(self, bot):
-        self.bot = bot
-        try:
-            self.bot.remove_command('ban')
-            self.bot.remove_command('kick')
-            self.bot.remove_command('mute')
-        except Exception as e:
-            print(e)            
+        self.bot = bot      
 
     @commands.command()
     @commands.cooldown(1, 60, commands.BucketType.user)
@@ -39,7 +33,7 @@ class FunCommands(commands.Cog):
             description=None,
             colour=random.choice(colors)
         )
-        embed.set_author(name=f"{ctx.message.author.name}", icon_url=f"{ctx.author.avatar_url}")
+        embed.set_author(name=f"{ctx.message.author.display_name}", icon_url=f"{ctx.author.avatar_url}")
         embed.set_image(url=link)
         await ctx.send(embed=embed)
 
@@ -93,13 +87,13 @@ class FunCommands(commands.Cog):
 
     @commands.command()
     @commands.guild_only()
-    @commands.cooldown(1, 7, commands.BucketType.user)
+    @commands.cooldown(2, 7, commands.BucketType.user)
     async def ban(self, ctx, user: discord.User):
         await ctx.send(f"Successfully Banned {user.mention}! :white_check_mark:")
 
     @commands.command()
     @commands.guild_only()
-    @commands.cooldown(1, 7, commands.BucketType.user)
+    @commands.cooldown(2, 7, commands.BucketType.user)
     async def kick(self, ctx, user: discord.User):
         await ctx.send(f"Successfully Kicked {user.mention}! :white_check_mark:")
 
