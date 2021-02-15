@@ -24,17 +24,18 @@ class ServerCommands(commands.Cog, name='Server Commands'):
         channel = self.bot.suggestion_channels.get(ctx.guild, "not found")
 
         if str(ctx.message.author.id) == "549084587855446016":
-            await ctx.send(f"{channel} \n\n {self.bot.suggestion.channels}")
+            await ctx.send(f"{channel} \n\n {self.bot.suggestion_channels}")
         if channel != "not found":
             embed = discord.Embed(
+                title="Server Suggestion",
                 description=sugg,
                 color=random.choice(colors)
             )
             embed.set_author(name=ctx.message.author.display_name,
                              icon_url=ctx.message.author.avatar_url)
             message = await channel.send(embed=embed)
-            message.add_reaction("✅")
-            message.add_reaction("❌")
+            await message.add_reaction("✅")
+            await message.add_reaction("❌")
 
         else:
             await ctx.send("Please ask a moderator to set up a suggestion channel using `setSuggestionChannel`")
