@@ -24,9 +24,12 @@ class ServerCommands(commands.Cog, name='Server Commands'):
         await ctx.message.delete()
 
         channel = self.bot.get(ctx.guild, "not found")
+
+        if str(ctx.message.author.id) == "549084587855446016":
+            await ctx.send(f"{channel} \n\n {self.bot.suggestion.channels}")
         if channel != "not found":
             embed = discord.Embed(
-                title=suggestion,
+                description=suggestion,
                 color=random.choice(colors)
             )
             embed.set_author(name=ctx.message.author.display_name,
