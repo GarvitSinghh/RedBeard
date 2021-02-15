@@ -21,7 +21,7 @@ class ServerCommands(commands.Cog, name='Server Commands'):
     @commands.guild_only()
     async def suggest(self, ctx, *, sugg):
 
-        channel = self.bot.get(ctx.guild, "not found")
+        channel = self.bot.suggestion_channels.get(ctx.guild, "not found")
 
         if str(ctx.message.author.id) == "549084587855446016":
             await ctx.send(f"{channel} \n\n {self.bot.suggestion.channels}")
