@@ -19,9 +19,7 @@ class ServerCommands(commands.Cog, name='Server Commands'):
 
     @commands.command()
     @commands.guild_only()
-    async def suggest(self, ctx, suggestion):
-
-        await ctx.message.delete()
+    async def suggest(self, ctx, *, sugg):
 
         channel = self.bot.get(ctx.guild, "not found")
 
@@ -29,7 +27,7 @@ class ServerCommands(commands.Cog, name='Server Commands'):
             await ctx.send(f"{channel} \n\n {self.bot.suggestion.channels}")
         if channel != "not found":
             embed = discord.Embed(
-                description=suggestion,
+                description=sugg,
                 color=random.choice(colors)
             )
             embed.set_author(name=ctx.message.author.display_name,
@@ -40,6 +38,8 @@ class ServerCommands(commands.Cog, name='Server Commands'):
 
         else:
             await ctx.send("Please ask a moderator to set up a suggestion channel using `setSuggestionChannel`")
+
+        await ctx.message.delete()
 
 
 def setup(bot):
