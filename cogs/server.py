@@ -7,20 +7,24 @@ class ServerCommands(commands.Cog, name='Server Commands'):
 
     def __init__(self, bot):
         self.bot = bot
+        self.bot.suggestion_channels = {}
 
     @commands.command()
     @commands.guild_only()
     @commands.has_permissions(manage_channels=True)
     async def setSuggestionChannel(self, ctx):
-        ctx.guild.suggestion_channel = ctx.channel
+        self.bot.suggestion_channels[ctx.guild] = ctx.channel
         await ctx.send("Current Channel has been set as the Suggestion Channel!")
 
     
     @commands.command()
     @commands.guild_only()
     async def suggest(self, ctx, suggestion):
-        try:
-            channel = ctx.guild.suggestion_channel
+
+        await ctx.message.delete();
+        
+        channel = self.bot.get(ctx.guild, "not found")
+        if channel != "not found":
             embed = discord.Embed(
             title=suggestion,
             color=random.choice(colors)
@@ -30,10 +34,9 @@ class ServerCommands(commands.Cog, name='Server Commands'):
             message.add_reaction("✅")
             message.add_reaction("❌")
         
-        except AttributeError:
-            await ctx.send("Please ask a moderator to setup a suggestion channel using setSuggestionChannel!")
+        else:
+            await ctx.send("Please ask a moderator to set up a suggestion channel using `setSuggestionChannel`")
         
-        await ctx.message.delete();
 
 def setup(bot):
     bot.add_cog(ServerCommands(bot))
