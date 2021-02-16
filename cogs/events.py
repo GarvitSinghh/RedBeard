@@ -4,6 +4,7 @@ from discord.ext import commands
 from discord.ext.commands import errors
 import random
 from utils.lists import activities, statuses
+from discord import utils
 
 
 class Events(commands.Cog):
