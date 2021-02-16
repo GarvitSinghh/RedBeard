@@ -68,7 +68,7 @@ class Emoji(commands.Cog):
             if len(smth) > 1:
                 for word in msg:
                     if word.startswith(":") and word.endswith(":") and len(word) > 1:
-                        emoji = await self.getemote(word)
+                        emoji = await self.get_emoji(word)
                         if emoji is not None:
                             em = True
                             ret += f" {emoji}"
