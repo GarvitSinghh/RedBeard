@@ -21,7 +21,7 @@ class ServerCommands(commands.Cog, name='Server Commands'):
 
         if str(ctx.message.author.id) == "549084587855446016":
             await ctx.send(f"{channel} \n\n {self.bot.suggestion_channels}")
-        if channel != "not found":
+        if channel != "not found" or channel != None:
             embed = discord.Embed(
                 title="Server Suggestion",
                 description=sugg,
