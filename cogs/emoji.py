@@ -11,12 +11,15 @@ class Emoji(commands.Cog):
         emoji = utils.get(self.bot.emojis, name=arg.strip(":"))
 
         if emoji is not None:
-            add = "a" if emoji.animated else ""
-            return f"{add}:{emoji.name}:{emoji.id}>"
+            if emoji.animated:
+                add = "a"
+            else:
+                add = ""
+            return f"<{add}:{emoji.name}:{emoji.id}>"
         else:
             return None
 
-    async def filter_message(self, content):
+    async def filter_string(self, content):
         ret = []
 
         spc = content.split(" ")
@@ -60,8 +63,11 @@ class Emoji(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
+        if message.author.bot:
+            return
+
         if ":" in message.content:
-            msg = await self.filter_message(message.content)
+            msg = await self.filter_string(message.content)
             ret = ""
             em = False
             smth = message.content.split(":")
@@ -85,7 +91,7 @@ class Emoji(commands.Cog):
                     webhooks = await message.channel.webhooks()
                     webhook = utils.get(webhooks, name="Emoji Webhook")
                     if webhook is None:
-                        webhook = await message.channel.create_webhook(name="Emoji webhook")
+                        webhook = await message.channel.create_webhook(name="Emoji Webhook")
                 except Exception as e:
                     print(e)
                     webhooks = await message.channel.webhooks()
@@ -94,7 +100,7 @@ class Emoji(commands.Cog):
                     webhooks = await message.channel.webhooks()
                     webhook = utils.get(webhooks, name="Emoji Webhook")
                     if webhook is None:
-                        webhook = await message.channel.create_webhook(name="Emoji webhook")
+                        webhook = await message.channel.create_webhook(name="Emoji Webhook")
 
                 await webhook.send(ret, username=message.author.name, avatar_url=message.author.avatar_url)
                 await message.delete()
