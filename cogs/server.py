@@ -8,20 +8,16 @@ class ServerCommands(commands.Cog, name='Server Commands'):
 
     def __init__(self, bot):
         self.bot = bot
-        self.bot.suggestion_channels = {}
-
-    @commands.command()
-    @commands.guild_only()
-    @commands.has_permissions(manage_channels=True)
-    async def setSuggestionChannel(self, ctx):
-        self.bot.suggestion_channels[ctx.guild] = ctx.channel
-        await ctx.send("Current Channel has been set as the Suggestion Channel!")
 
     @commands.command()
     @commands.guild_only()
     async def suggest(self, ctx, *, sugg):
 
-        channel = self.bot.suggestion_channels.get(ctx.guild, "not found")
+        try:
+            channel = discord.utils.get(ctx.guild.channels, name="suggestions")
+        except Exception as e:
+            channel = "not found"
+            print(e)
 
         if str(ctx.message.author.id) == "549084587855446016":
             await ctx.send(f"{channel} \n\n {self.bot.suggestion_channels}")
@@ -38,7 +34,7 @@ class ServerCommands(commands.Cog, name='Server Commands'):
             await message.add_reaction("❌")
 
         else:
-            await ctx.send("Please ask a moderator to set up a suggestion channel using `setSuggestionChannel`")
+            await ctx.send("Please ask a moderator to create a channel named #suggestions")
 
         await ctx.message.delete()
 
