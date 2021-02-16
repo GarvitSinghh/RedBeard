@@ -83,18 +83,18 @@ class Emoji(commands.Cog):
             if em:
                 try:
                     webhooks = await message.channel.webhooks()
-                    webhook = utils.get(webhooks, name="Fake Webhook")
+                    webhook = utils.get(webhooks, name="Emoji Webhook")
                     if webhook is None:
-                        webhook = await message.channel.create_webhook(name="Fake webhook")
+                        webhook = await message.channel.create_webhook(name="Emoji webhook")
                 except Exception as e:
                     print(e)
                     webhooks = await message.channel.webhooks()
                     for webhook in webhooks:
                         await webhook.delete()
                     webhooks = await message.channel.webhooks()
-                    webhook = utils.get(webhooks, name="Fake Webhook")
+                    webhook = utils.get(webhooks, name="Emoji Webhook")
                     if webhook is None:
-                        webhook = await message.channel.create_webhook(name="Fake webhook")
+                        webhook = await message.channel.create_webhook(name="Emoji webhook")
 
                 await webhook.send(ret, username=message.author.name, avatar_url=message.author.avatar_url)
                 await message.delete()
