@@ -102,7 +102,7 @@ class Emoji(commands.Cog):
                     if webhook is None:
                         webhook = await message.channel.create_webhook(name="Emoji Webhook")
 
-                await webhook.send(ret, username=message.author.display_name, avatar_url=message.author.avatar_url)
+                await webhook.send(ret, username=message.guild.get_member(message.author.id).nick, avatar_url=message.author.avatar_url)
                 await message.delete()
 
 
