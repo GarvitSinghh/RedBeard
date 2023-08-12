@@ -5,4 +5,3 @@
 An annoying multipurpose bot.
 
 Use [this link](https://discord.com/oauth2/authorize?client_id=716406329987825765&permissions=8&scope=bot) to invite the bot to your server!
-My Discord Tag: natsudragneel_x#6754
